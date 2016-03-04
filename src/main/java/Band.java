@@ -64,4 +64,13 @@ public class Band {
         .executeUpdate();
     }
   }
+
+  public static void deleteBand(int id) {
+      String sql = "DELETE FROM bands WHERE id=:id";
+      try(Connection con = DB.sql2o.open()) {
+        con.createQuery(sql)
+        .addParameter("id", id)
+        .executeUpdate();
+      }
+  }
 }
