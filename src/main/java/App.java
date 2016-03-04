@@ -81,13 +81,19 @@ public class App {
       return null;
     });
 
-    post("/addBands", (request, response) -> {
+  post("/addBands", (request, response) -> {
       int venueid = Integer.parseInt(request.queryParams("venueid"));
       int bandid = Integer.parseInt(request.queryParams("bandid"));
       Band band = Band.find(bandid);
       Venue venue = Venue.find(venueid);
       venue.addBand(band);
       response.redirect("/venue/" + venueid);
+      return null;
+    });
+
+  post("/index/deleteBands", (request, response) -> {
+      Band.deleteAllBands();
+      response.redirect("/");
       return null;
     });
   }

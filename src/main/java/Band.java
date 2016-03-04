@@ -97,15 +97,6 @@ public class Band {
     }
   }
 
-  // public static void deleteBand(int id) {
-  //     String sql = "DELETE FROM bands WHERE id=:id";
-  //     try(Connection con = DB.sql2o.open()) {
-  //       con.createQuery(sql)
-  //       .addParameter("id", id)
-  //       .executeUpdate();
-  //   }
-  // }
-
   public void delete() {
     try (Connection con = DB.sql2o.open()) {
       String deleteQuery = "DELETE FROM bands WHERE id = :id;";
@@ -120,7 +111,7 @@ public class Band {
     }
   }
 
-  public static void deleteAll() {
+  public static void deleteAllBands() {
       String sql = "DELETE FROM bands";
       try(Connection con = DB.sql2o.open()) {
         con.createQuery(sql)
