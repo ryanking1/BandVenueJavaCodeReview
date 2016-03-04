@@ -1,6 +1,8 @@
 import org.junit.*;
 import static org.junit.Assert.*;
 import java.util.Arrays;
+import java.util.List;
+import java.util.ArrayList;
 
 public class BandTest {
 
@@ -41,5 +43,18 @@ public class BandTest {
     myBand.update("Band 2");
     Band savedBand = Band.find(myBand.getId());
     assertTrue(savedBand.getName().equals("Band 2"));
+  }
+
+  @Test
+  public void getVenues_returnsAllVenues_ArrayList() {
+    Band myBand = new Band("Band 1");
+    myBand.save();
+
+    Venue myVenue = new Venue("Venue 1");
+    myVenue.save();
+
+    myBand.addVenue(myVenue);
+    List savedVenues = myBand.getVenues();
+    assertEquals(savedVenues.size(), 1);
   }
 }
