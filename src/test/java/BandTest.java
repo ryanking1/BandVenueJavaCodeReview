@@ -33,4 +33,13 @@ public class BandTest {
     Band savedBand = Band.find(myBand.getId());
     assertTrue(myBand.equals(savedBand));
   }
+
+  @Test
+  public void updatesBandName() {
+    Band myBand = new Band("Band 1");
+    myBand.save();
+    myBand.update("Band 2");
+    Band savedBand = Band.find(myBand.getId());
+    assertTrue(savedBand.getName().equals("Band 2"));
+  }
 }
