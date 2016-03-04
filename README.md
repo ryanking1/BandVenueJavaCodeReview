@@ -18,7 +18,7 @@ This was created as an Epicodus exercise in Behavior Driven Development, web app
 * Connect to database by using \c command: \c hair_salon;
 * CREATE TABLE bands (id serial PRIMARY KEY, name varchar);
 * CREATE TABLE venues (id serial PRIMARY KEY, name varchar);
-* CREATE TABLE bands_venues (id serial PRIMARY KEY, bandId int, venueId int);
+* CREATE TABLE bands_venues (id serial PRIMARY KEY, bandid int, venueid int);
 * In the top level of the cloned directory, run the following command in your terminal:
 
 `gradle run`

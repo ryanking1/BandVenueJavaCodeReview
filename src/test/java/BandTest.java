@@ -57,4 +57,22 @@ public class BandTest {
     List savedVenues = myBand.getVenues();
     assertEquals(savedVenues.size(), 1);
   }
+
+  @Test
+  public void delete_deletesAllBands() {
+    Band myBand = new Band("Band 1");
+    myBand.save();
+
+    Band myBand2 = new Band("Band 2");
+    myBand2.save();
+
+    Venue myVenue = new Venue("Venue");
+    myVenue.save();
+
+    myVenue.addBand(myBand);
+    myVenue.addBand(myBand2);
+
+    Band.deleteAllBands();
+    assertEquals(myVenue.getBands().size(), 0);
+  }
 }

@@ -57,7 +57,7 @@ public class VenueTest {
   }
 
   @Test
-  public void delete_deletesAVenue() {
+  public void delete_deletesAvenue() {
     Band myBand = new Band("Band 1");
     myBand.save();
 
