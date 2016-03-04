@@ -64,8 +64,26 @@ public class VenueTest {
     Venue myVenue = new Venue("Venue 1");
     myVenue.save();
 
-    myVenue.addBand(myBand);
+    myBand.addVenue(myVenue);
     myVenue.delete();
+    assertEquals(myBand.getVenues().size(), 0);
+  }
+
+  @Test
+  public void delete_deletesAllVenuess() {
+    Band myBand = new Band("Band 1");
+    myBand.save();
+
+    Venue myVenue = new Venue("Venue 1");
+    myVenue.save();
+
+    Venue myVenue2 = new Venue("Venue 2");
+    myVenue2.save();
+
+    myBand.addVenue(myVenue);
+    myBand.addVenue(myVenue2);
+
+    Venue.deleteAllVenues();
     assertEquals(myBand.getVenues().size(), 0);
   }
 }
