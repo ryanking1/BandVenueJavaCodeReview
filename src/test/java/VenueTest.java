@@ -34,4 +34,12 @@ public class VenueTest {
     myVenue2.save();
     assertTrue(Venue.all().contains(myVenue2));
   }
+
+  @Test
+  public void find_findsVenueInDatabase_true() {
+    Venue myVenue = new Venue("Venue 11");
+    myVenue.save();
+    Venue savedVenue = Venue.find(myVenue.getId());
+    assertTrue(myVenue.equals(savedVenue));
+  }
 }
