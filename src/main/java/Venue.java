@@ -1,5 +1,6 @@
 import java.util.List;
 import org.sql2o.*;
+import java.util.ArrayList;
 
 public class Venue {
   private int id;
@@ -44,6 +45,36 @@ public class Venue {
     }
   }
 
+  public void addBand(Band band) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "INSERT INTO bands_venues (bandid, venueid) VALUES (:bandid, :venueid)";
+      con.createQuery(sql)
+        .addParameter("venueid", this.getId())
+        .addParameter("bandid", band.getId())
+        .executeUpdate();
+    }
+  }
+
+  public ArrayList<Band> getBands() {
+    try(Connection con = DB.sql2o.open()){
+      String sql = "SELECT DISTINCT bandid FROM bands_venues WHERE venueid = :venueid";
+      List<Integer> bandids = con.createQuery(sql)
+        .addParameter("venueid", this.getId())
+        .executeAndFetch(Integer.class);
+
+      ArrayList<Band> bands = new ArrayList<Band>();
+
+      for (Integer bandid : bandids) {
+          String venueQuery = "Select * From bands WHERE id = :bandid";
+          Band band = con.createQuery(venueQuery)
+            .addParameter("bandid", bandid)
+            .executeAndFetchFirst(Band.class);
+            bands.add(band);
+      }
+      return bands;
+    }
+  }
+
   public static Venue find(int id) {
     try(Connection con = DB.sql2o.open()) {
       String sql = "SELECT * FROM venues where id=:id";
@@ -54,11 +85,16 @@ public class Venue {
     }
   }
 
-  public static void delete(int id) {
-    String sql = "DELETE FROM venues WHERE id=:id";
-    try(Connection con = DB.sql2o.open()) {
-      con.createQuery(sql)
+  public void delete() {
+    try (Connection con = DB.sql2o.open()) {
+      String deleteQuery = "DELETE FROM venues WHERE id = :id;";
+      con.createQuery(deleteQuery)
         .addParameter("id", id)
+        .executeUpdate();
+
+      String joinDeleteQuery = "DELETE FROM bands_venues WHERE venueid = :venueid";
+      con.createQuery(joinDeleteQuery)
+        .addParameter("venueid", this.getId())
         .executeUpdate();
     }
   }

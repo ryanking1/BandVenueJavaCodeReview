@@ -3,7 +3,7 @@ index.vtl
 <h1>Band List:</h1>
 
 #foreach($band in $bands)
-<h4><a href="/$band.getId()">$band.getName()</a>
+<h4><a href="/band/$band.getId()">$band.getName()</a>
 
   <form action="/delete/band/$band.getId()" method="post">
   <button type="submit" id="$band.getId()" name="deleteBand" class="btn btn-danger">
@@ -28,7 +28,7 @@ index.vtl
 <h1>Venue List:</h1>
 
 #foreach($venue in $venues)
-<h4><a href="/$venue.getId()">$venue.getName()</a>
+<h4><a href="/venue/$venue.getId()">$venue.getName()</a>
 
   <form action="/delete/venue/$venue.getId()" method="post">
   <button type="submit" id="$venue.getId()" name="deleteVenue" class="btn btn-danger">

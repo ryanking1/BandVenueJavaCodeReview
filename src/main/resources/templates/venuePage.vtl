@@ -1,0 +1,17 @@
+venuePage.vtl
+
+<h2>$venue.getName()</h2>
+
+Add a Band that Has Performed at this Venue:
+
+<form action="/addBandToVenue" method="post">
+    #foreach($band in $bands)
+       <div class="checkbox">
+         <label>
+           <input type="checkbox" name="addBandss" value="$band.getId()" id="band$band.getId()">
+           $band.getName()
+         </label>
+       </div>
+       #end
+       <button type="submit" id="bandsAdded" class="btn btn-success">Add Band</button>
+</form>
