@@ -40,5 +40,12 @@ public class App {
       response.redirect("/");
       return null;
     });
+
+  post("/delete/venue/:id", (request, response) -> {
+      int id = Integer.parseInt(request.params(":id"));
+      Venue.delete(id);
+      response.redirect("/");
+      return null;
+    });
   }
 }
