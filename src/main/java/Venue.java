@@ -45,6 +45,17 @@ public class Venue {
     }
   }
 
+  public void update(String name) {
+    this.name = name;
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE venues SET name = :name WHERE id = :id";
+      con.createQuery(sql)
+        .addParameter("name", name)
+        .addParameter("id", id)
+        .executeUpdate();
+    }
+  }
+
   public void addBand(Band band) {
     try(Connection con = DB.sql2o.open()) {
       String sql = "INSERT INTO bands_venues (bandid, venueid) VALUES (:bandid, :venueid)";

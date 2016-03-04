@@ -54,6 +54,15 @@ public class App {
       return null;
     });
 
+  post("/updateVenue", (request, response) -> {
+      String venueName = request.queryParams("venueName");
+      int venueid = Integer.parseInt(request.queryParams("venueid"));
+      Venue newVenue = Venue.find(venueid);
+      newVenue.update(venueName);
+      response.redirect("/venue/" + venueid);
+      return null;
+    });
+
   post("/delete/band/:id", (request, response) -> {
       int id = Integer.parseInt(request.params(":id"));
       Band newBand = Band.find(id);

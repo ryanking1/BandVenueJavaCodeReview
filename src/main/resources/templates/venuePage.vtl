@@ -1,6 +1,15 @@
 venuePage.vtl
 
-<h2>$venue.getName()</h2>
+<h2>Venue Name: $venue.getName()</h2>
+
+<h4>Update Venue Name Below</h4>
+
+<form action="/updateVenue" method="post">
+  <input id="venueid" name="venueid" type="hidden" value="$venue.getId()">
+  <label for="">Change Venue Name</label>
+  <input type="text" name="venueName" id="venueName" required>
+  <button type="submit" class="btn btn-primary">Change Venue Name</button>
+</form>
 
 <h3>Bands That Have Performed at This Venue:</h3>
 

@@ -70,6 +70,15 @@ public class VenueTest {
   }
 
   @Test
+  public void updatesVenueName() {
+    Venue myVenue = new Venue("Venue 1");
+    myVenue.save();
+    myVenue.update("Venue 2");
+    Venue savedVenue = Venue.find(myVenue.getId());
+    assertTrue(savedVenue.getName().equals("Venue 2"));
+  }
+
+  @Test
   public void delete_deletesAllVenuess() {
     Band myBand = new Band("Band 1");
     myBand.save();
