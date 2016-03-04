@@ -18,4 +18,11 @@ public class BandTest {
     Band secondBand = new Band("Band 1");
     assertTrue(firstBand.equals(secondBand));
   }
+
+  @Test
+  public void save_savesIntoDatabase_true() {
+    Band myBand = new Band("Band 1");
+    myBand.save();
+    assertTrue(Band.all().get(0).equals(myBand));
+  }
 }
