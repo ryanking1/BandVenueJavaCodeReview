@@ -17,5 +17,13 @@ public class App {
       model.put("template", "templates/index.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
+
+  post("/addBand", (request, response) -> {
+      String bandName = request.queryParams("bandName");
+      Band newBand = new Band(bandName);
+      newBand.save();
+      response.redirect("/");
+      return null;
+    });
   }
 }
