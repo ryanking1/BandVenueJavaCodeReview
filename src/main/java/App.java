@@ -22,7 +22,6 @@ public class App {
   get("/band/:id", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
       Band band = Band.find(Integer.parseInt(request.params(":id")));
-      // List<Venue> venues = band.getVenues();
       model.put("band", band);
       model.put("venues", Venue.all());
       model.put("template", "templates/bandPage.vtl");
@@ -32,7 +31,6 @@ public class App {
   get("/venue/:id", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
       Venue venue = Venue.find(Integer.parseInt(request.params(":id")));
-      // List<Venue> venues = band.getVenues();
       model.put("venue", venue);
       model.put("bands", Band.all());
       model.put("template", "templates/venuePage.vtl");
@@ -44,6 +42,15 @@ public class App {
       Band newBand = new Band(bandName);
       newBand.save();
       response.redirect("/");
+      return null;
+    });
+
+  post("/updateBand", (request, response) -> {
+      String bandName = request.queryParams("bandName");
+      int bandid = Integer.parseInt(request.queryParams("bandid"));
+      Band newBand = Band.find(bandid);
+      newBand.update(bandName);
+      response.redirect("/band/" + bandid);
       return null;
     });
 

@@ -1,13 +1,21 @@
 bandPage.vtl
 
-<h2>$band.getName()</h2>
+<h2>Band Name: $band.getName()</h2>
 
+<h4>Update Band Name Below</h4>
+
+<form action="/updateBand" method="post">
+  <input id="bandid" name="bandid" type="hidden" value="$band.getId()">
+  <label for="">Add a Band</label>
+  <input type="text" name="bandName" id="bandName" required>
+  <button type="submit" class="btn btn-primary">Change Band Name</button>
+</form>
 
 <h3>Venues Where This Band Has Performed:</h3>
 
 #foreach($venue in $band.getVenues())
   <ul>
-    <li><h6>$venue.getName()</li>
+    <li><h6>$venue.getName()</h6></li>
   </ul>
 #end
 
