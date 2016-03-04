@@ -116,6 +116,10 @@ public class Band {
       try(Connection con = DB.sql2o.open()) {
         con.createQuery(sql)
         .executeUpdate();
+
+      String joinDeleteQuery = "DELETE FROM bands_venues WHERE bandid >= 0";
+      con.createQuery(joinDeleteQuery)
+        .executeUpdate();
     }
   }
 }

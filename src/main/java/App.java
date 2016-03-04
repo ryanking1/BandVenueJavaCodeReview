@@ -96,5 +96,11 @@ public class App {
       response.redirect("/");
       return null;
     });
+
+  post("/index/deleteVenues", (request, response) -> {
+      Venue.deleteAllVenues();
+      response.redirect("/");
+      return null;
+    });
   }
 }
