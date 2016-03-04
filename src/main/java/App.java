@@ -26,9 +26,17 @@ public class App {
       return null;
     });
 
-    post("/delete/band/:id", (request, response) -> {
+  post("/delete/band/:id", (request, response) -> {
       int id = Integer.parseInt(request.params(":id"));
       Band.deleteBand(id);
+      response.redirect("/");
+      return null;
+    });
+
+  post("/addVenue", (request, response) -> {
+      String venueName = request.queryParams("venueName");
+      Venue newVenue = new Venue(venueName);
+      newVenue.save();
       response.redirect("/");
       return null;
     });
