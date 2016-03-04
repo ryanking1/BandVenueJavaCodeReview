@@ -77,7 +77,7 @@ public class App {
       Band band = Band.find(bandid);
       Venue venue = Venue.find(venueid);
       band.addVenue(venue);
-      response.redirect("/");
+      response.redirect("/band/" + bandid);
       return null;
     });
 
@@ -87,7 +87,7 @@ public class App {
       Band band = Band.find(bandid);
       Venue venue = Venue.find(venueid);
       venue.addBand(band);
-      response.redirect("/");
+      response.redirect("/venue/" + venueid);
       return null;
     });
   }

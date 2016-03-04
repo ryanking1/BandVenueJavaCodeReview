@@ -42,7 +42,7 @@ public class VenueTest {
     Venue savedVenue = Venue.find(myVenue.getId());
     assertTrue(myVenue.equals(savedVenue));
   }
-//Start here
+
   @Test
   public void addBand_addsBandToVenue() {
     Band myBand = new Band("Band 1");
@@ -55,7 +55,6 @@ public class VenueTest {
     Band savedBand = myVenue.getBands().get(0);
     assertTrue(myBand.equals(savedBand));
   }
-
 
   @Test
   public void delete_deletesAVenue() {
