@@ -25,5 +25,12 @@ public class App {
       response.redirect("/");
       return null;
     });
+
+    post("/delete/band/:id", (request, response) -> {
+      int id = Integer.parseInt(request.params(":id"));
+      Band.deleteBand(id);
+      response.redirect("/");
+      return null;
+    });
   }
 }
