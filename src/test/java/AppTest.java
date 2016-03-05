@@ -83,4 +83,13 @@ public class AppTest extends FluentTest {
     assertThat(pageSource()).contains("Venue 2");
     assertThat(pageSource()).contains("Venue 4");
   }
+
+  public void updateBand() {
+    Band band1 = new Band("Band 1");
+    band1.save();
+    goTo("http://localhost:4567/");
+    click("a", withText("Band 1"));
+    fill("#bandName").with("Band 2");
+    assertThat(pageSource()).contains("Band 2");
+  }
 }
