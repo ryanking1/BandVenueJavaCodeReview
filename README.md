@@ -1,6 +1,6 @@
 # Band Venue App
 
-#### Creates an app that allows adding bands and venues, and creating linked lists between the two, February 26, 2016.
+#### Creates an app that allows adding bands and venues, and creating linked lists between the two, March 4, 2016.
 
 #### By Ryan King
 
