@@ -92,4 +92,31 @@ public class AppTest extends FluentTest {
     fill("#bandName").with("Band 2");
     assertThat(pageSource()).contains("Band 2");
   }
+
+  public void updateVenue() {
+    Venue venue1 = new Venue("Venue 1");
+    venue1.save();
+    goTo("http://localhost:4567/");
+    click("a", withText("Venue 1"));
+    fill("#venueName").with("Venue 2");
+    assertThat(pageSource()).contains("Venue 2");
+  }
+
+  @Test
+  public void deleteBand() {
+    Band band1 = new Band("Band 1");
+    band1.save();
+    goTo("http://localhost:4567/");
+    click(".deleteButton", withText("Delete"));
+    assertThat(((pageSource()).contains("Band 1")) == false);
+  }
+
+  @Test
+  public void deleteVenue() {
+    Venue venue1 = new Venue("Venue 1");
+    venue1.save();
+    goTo("http://localhost:4567/");
+    click(".deleteButton", withText("Delete"));
+    assertThat(((pageSource()).contains("Venue 1")) == false);
+  }
 }
