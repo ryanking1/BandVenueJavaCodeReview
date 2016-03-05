@@ -31,29 +31,56 @@ public class AppTest extends FluentTest {
       assertThat(pageSource()).contains("Band List");
     }
 
-    @Test
-    public void SeeBandsInVenue() {
-      Band band1 = new Band("Band 1");
-      band1.save();
-      Band band2 = new Band("Band 2");
-      band2.save();
-      Venue venue1 = new Venue("Venue 1");
-      venue1.save();
-      Venue venue2 = new Venue("Venue 2");
-      venue2.save();
-      Venue venue3 = new Venue("Venue 3");
-      venue3.save();
-      Venue venue4 = new Venue("Venue 4");
-      venue4.save();
-      venue1.addBand(band1);
-      venue1.addBand(band2);
-      venue2.addBand(band1);
-      venue3.addBand(band2);
-      venue4.addBand(band1);
-      venue4.addBand(band2);
-      goTo("http://localhost:4567/");
-      click("a", withText("Venue 1"));
-      assertThat(pageSource()).contains("Band 1");
-      assertThat(pageSource()).contains("Band 2");
+  @Test
+  public void SeeBandsInVenue() {
+    Band band1 = new Band("Band 1");
+    band1.save();
+    Band band2 = new Band("Band 2");
+    band2.save();
+    Venue venue1 = new Venue("Venue 1");
+    venue1.save();
+    Venue venue2 = new Venue("Venue 2");
+    venue2.save();
+    Venue venue3 = new Venue("Venue 3");
+    venue3.save();
+    Venue venue4 = new Venue("Venue 4");
+    venue4.save();
+    venue1.addBand(band1);
+    venue1.addBand(band2);
+    venue2.addBand(band1);
+    venue3.addBand(band2);
+    venue4.addBand(band1);
+    venue4.addBand(band2);
+    goTo("http://localhost:4567/");
+    click("a", withText("Venue 1"));
+    assertThat(pageSource()).contains("Band 1");
+    assertThat(pageSource()).contains("Band 2");
     }
+
+  @Test
+  public void SeeVenuesInBand() {
+    Band band1 = new Band("Band 1");
+    band1.save();
+    Band band2 = new Band("Band 2");
+    band2.save();
+    Venue venue1 = new Venue("Venue 1");
+    venue1.save();
+    Venue venue2 = new Venue("Venue 2");
+    venue2.save();
+    Venue venue3 = new Venue("Venue 3");
+    venue3.save();
+    Venue venue4 = new Venue("Venue 4");
+    venue4.save();
+    venue1.addBand(band1);
+    venue1.addBand(band2);
+    venue2.addBand(band1);
+    venue3.addBand(band2);
+    venue4.addBand(band1);
+    venue4.addBand(band2);
+    goTo("http://localhost:4567/");
+    click("a", withText("Band 1"));
+    assertThat(pageSource()).contains("Venue 1");
+    assertThat(pageSource()).contains("Venue 2");
+    assertThat(pageSource()).contains("Venue 4");
   }
+}
