@@ -1,0 +1,8 @@
+.deleteButton {
+  margin: 10px;
+  border-radius: 10%;
+}
+
+#listItem {
+  font-size: 18px;
+}

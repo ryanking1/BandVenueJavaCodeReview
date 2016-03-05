@@ -1,50 +1,55 @@
 index.vtl
 
-<h1>Band List:</h1>
+<div class="row">
+  <div class="col-md-6">
+    <div class="well">
+      <h1>Band List:</h1>
+    </div>
 
-#foreach($band in $bands)
-<h4><a href="/band/$band.getId()">$band.getName()</a>
+    #foreach($band in $bands)
+    <h4><a href="/band/$band.getId()">$band.getName()</a>
+      <form action="/delete/band/$band.getId()" method="post">
+      <button type="submit" id="$band.getId()" name="deleteBand" class="deleteButton btn btn-xs">Delete</button></h4>
+      </form>
+    #end
 
-  <form action="/delete/band/$band.getId()" method="post">
-  <button type="submit" id="$band.getId()" name="deleteBand" class="btn btn-danger">
-    Delete Band</button></h4>
+    <form action="/addBand" method="post">
+      <label for="">Add a Band</label>
+      <input type="text" name="bandName" id="bandName" required>
+      <button type="submit" class="btn btn-primary btn-xs">Submit</button>
+    </form>
+
+    <!-- Delete All Bands below -->
+
+    <form action="/index/deleteBands" method="post">
+      <h6><button type="submit" class="deleteButton btn btn-xs">
+        Delete All Bands!</button></h6>
+    </form>
+  </div>
+<div class="col-md-6">
+  <div class="well">
+    <h1>Venue List:</h1>
+  </div>
+
+  #foreach($venue in $venues)
+  <h4><a href="/venue/$venue.getId()">$venue.getName()</a>
+
+    <form action="/delete/venue/$venue.getId()" method="post">
+    <button type="submit" id="$venue.getId()" name="deleteVenue" class="deleteButton btn btn-xs">
+      Delete</button></h4>
+    </form>
+  #end
+
+  <form action="/addVenue" method="post">
+    <label for="">Add a Venue</label>
+    <input type="text" name="venueName" id="venueName" required>
+    <button type="submit" class="btn btn-xs btn-primary">Submit</button>
   </form>
-#end
 
+<!-- Delete All Venues Below-->
 
-<form action="/addBand" method="post">
-  <label for="">Add a Band</label>
-  <input type="text" name="bandName" id="bandName" required>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-
-<h6>Delete All Bands</h6>
-
-<form action="/index/deleteBands" method="post">
-  <h6><button type="submit" class="btn btn-danger">
-    Delete All Bands!</button></h6>
-</form>
-
-<h1>Venue List:</h1>
-
-#foreach($venue in $venues)
-<h4><a href="/venue/$venue.getId()">$venue.getName()</a>
-
-  <form action="/delete/venue/$venue.getId()" method="post">
-  <button type="submit" id="$venue.getId()" name="deleteVenue" class="btn btn-danger">
-    Delete Venue</button></h4>
+  <form action="/index/deleteVenues" method="post">
+    <h6><button type="submit" class="deleteButton btn btn-xs">
+      Delete All Venues!</button></h6>
   </form>
-#end
-
-<form action="/addVenue" method="post">
-  <label for="">Add a Venue</label>
-  <input type="text" name="venueName" id="venueName" required>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-
-<h6>Delete All Venues</h6>
-
-<form action="/index/deleteVenues" method="post">
-  <h6><button type="submit" class="btn btn-danger">
-    Delete All Venues!</button></h6>
-</form>
+</div>

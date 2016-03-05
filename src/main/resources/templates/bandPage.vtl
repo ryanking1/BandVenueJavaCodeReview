@@ -1,34 +1,45 @@
 bandPage.vtl
 
-<h2>Band Name: $band.getName()</h2>
+<div class="row">
+  <div class="col-md-6">
+    <div class="well">
+      <h4>Band Name: $band.getName()</h4>
+    </div>
+    <div class="well">
+      <h4>Update Band Name Below</h4>
+    </div>
 
-<h4>Update Band Name Below</h4>
+    <form action="/updateBand" method="post">
+      <input id="bandid" name="bandid" type="hidden" value="$band.getId()">
+      <label for="">Change Band Name</label>
+      <input type="text" name="bandName" id="bandName" required>
+      <button type="submit" class="btn btn-primary">Change Band Name</button>
+    </form>
+  </div>
 
-<form action="/updateBand" method="post">
-  <input id="bandid" name="bandid" type="hidden" value="$band.getId()">
-  <label for="">Change Band Name</label>
-  <input type="text" name="bandName" id="bandName" required>
-  <button type="submit" class="btn btn-primary">Change Band Name</button>
-</form>
+  <div class="col-md-6">
+    <div class="well">
+      <h4>Venues Where This Band Has Performed:</h4>
+    </div>
 
-<h3>Venues Where This Band Has Performed:</h3>
+    #foreach($venue in $band.getVenues())
+      <ul>
+        <li><h6>$venue.getName()</h6></li>
+      </ul>
+    #end
+    <div class="well">
+      <h4>Add a Venue Where This Band has Performed:</h4>
+    </div>
 
-#foreach($venue in $band.getVenues())
-  <ul>
-    <li><h6>$venue.getName()</h6></li>
-  </ul>
-#end
-
-
-<h4>Add a Venue Where This Band has Performed:</h4>
-
-<form action='/addVenues' method='post'>
-    <input id="bandid" name="bandid" type="hidden" value="$band.getId()">
-    <label for="venueid">Select a Venue</label>
-    <select id='venueid' name='venueid' type='text'>
-      #foreach($venue in $venues)
-        <option value="$venue.getId()"> $venue.getName() </option>
-      #end
-    </select>
-    <button type='submit'>Add Venue</button>
-</form>
+    <form action='/addVenues' method='post'>
+      <input id="bandid" name="bandid" type="hidden" value="$band.getId()">
+      <label for="venueid">Select a Venue</label>
+      <select id='venueid' name='venueid' type='text'>
+        #foreach($venue in $venues)
+          <option value="$venue.getId()"> $venue.getName() </option>
+        #end
+      </select>
+      <button type='submit'>Add Venue</button>
+    </form>
+  </div>
+</div>
